@@ -78,7 +78,6 @@ public class StatisticsTest {
         assertEquals("Gretzky", testList.get(0).getName());
         assertEquals("Lemieux", testList.get(1).getName());
         assertEquals("Yzerman", testList.get(2).getName());
-        
     }
     
     
