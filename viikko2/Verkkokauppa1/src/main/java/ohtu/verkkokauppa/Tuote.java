@@ -27,6 +27,10 @@ public class Tuote {
         return hinta;
     }
 
+    public String getNimi() {
+        return nimi;
+    }
+
     @Override
     public String toString() {
         return nimi;
