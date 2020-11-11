@@ -17,6 +17,22 @@ public class Stepdefs {
     WebDriver driver = new HtmlUnitDriver();
     String baseUrl = "http://localhost:4567";
     
+    @Given("user with username {string} with password {string} is successfully created")
+    public void UserIsGivenAndLoginIsSelected(String username, String password) {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));       
+        element.click(); 
+        createNewUser(username, password);   
+    }
+    
+    @Given("user with username {string} and password {string} is tried to be created")
+    public void BadUserIsGivenAndIsNotSuccessfullyCreated(String username, String password) {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));       
+        element.click(); 
+        createNewUser(username, password);   
+    }
+    
     @Given("login is selected")
     public void loginIsSelected() {
         driver.get(baseUrl);
@@ -30,6 +46,13 @@ public class Stepdefs {
         WebElement element = driver.findElement(By.linkText("register new user"));       
         element.click();   
     }
+   
+   
+    
+    @When("too short username {string} and too bad password {string} are given")
+    public void badUserNameBadPasswordareGiven(String username, String password) {
+        logInWith(username, password);
+    }  
     
     @When("too short username {string} and valid password {string} is given")
     public void tooShortUsername(String username, String password){
@@ -54,12 +77,24 @@ public class Stepdefs {
     @When("correct username {string} and password {string} are given")
     public void correctUsernameAndPasswordAreGiven(String username, String password) {
         logInWith(username, password);
-    }    
+    }
+    
     
     @When("a valid username {string} and password {string} and matching password confirmation are entered")
     public void validUserNameAndPasswordAreGiven(String username, String password) {
         createNewUser(username, password);
     }
+    
+    @When("username {string} and password {string} are entered")
+    public void loggingInWithGivenUserNameAndPassword(String username, String password) {
+        logInWith(username, password);
+    }
+    
+    @Then("user has logged in")
+    public void userLoggedInWithGivenUNAndPass() {
+        pageHasContent("Ohtu Application main page");
+    }    
+    
     
     @Then("a new user is created")
     public void newUserIsLoggedIn() {
