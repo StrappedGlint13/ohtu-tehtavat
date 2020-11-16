@@ -51,7 +51,7 @@ public class KauppaTest {
         k.lisaaKoriin(1);  
         k.tilimaksu("pekka", "66666");
 
-        verify(pankki).tilisiirto("pekka", 33, "66666", "33333-44455", 10);   
+        verify(pankki).tilisiirto(eq("pekka"), eq(33), eq("66666"), eq("33333-44455"), eq(10));   
     }
     @Test
     public void ostoskoriinLisataanKaksiEriTuotettaJaTarkistetaanTiedot() {      
@@ -68,8 +68,7 @@ public class KauppaTest {
         k.lisaaKoriin(2);
         k.tilimaksu("pekka", "66666");
 
-
-        verify(pankki).tilisiirto("pekka", 6, "66666", "33333-44455", 10);   
+        verify(pankki).tilisiirto(eq("pekka"), eq(6), eq("66666"), eq("33333-44455"), eq(10)); 
 
     }
     
@@ -88,8 +87,7 @@ public class KauppaTest {
         k.lisaaKoriin(1);
         k.tilimaksu("pekka", "66666");
 
-
-        verify(pankki).tilisiirto("pekka", 6, "66666", "33333-44455", 10);   
+        verify(pankki).tilisiirto(eq("pekka"), eq(6), eq("66666"), eq("33333-44455"), eq(10)); 
 
     }
     
@@ -107,10 +105,96 @@ public class KauppaTest {
         k.lisaaKoriin(2);
         k.tilimaksu("pekka", "66666");
 
-
-        verify(pankki).tilisiirto("pekka", 6, "66666", "33333-44455", 5);   
+        verify(pankki).tilisiirto(eq("pekka"), eq(6), eq("66666"), eq("33333-44455"), eq(5));   
 
     }
+    
+    @Test
+    public void aloitaAsiointiNollaaEdellisenOstoksenTiedot() {      
+        when(viite.uusi()).thenReturn(6);  
+        when(varasto.saldo(1)).thenReturn(10);
+        when(varasto.saldo(2)).thenReturn(10); 
+        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
+        when(varasto.haeTuote(2)).thenReturn(new Tuote(2, "voi", 10));
+       
+
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(2);
+        k.tilimaksu("pekka", "66666");
+
+        //Testataan, että ensimmäinen ostos toimii
+        verify(pankki).tilisiirto(eq("pekka"), eq(6), eq("66666"), eq("33333-44455"), eq(15)); 
+        
+        when(viite.uusi()).thenReturn(7);
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(2);
+        k.tilimaksu("kalle", "12345");
+        
+        //Testataan, että toisessa ostoksessa ei ole edellisen ostoksen tietoja
+        verify(pankki).tilisiirto(eq("kalle"), eq(7), eq("12345"), eq("33333-44455"), eq(25)); 
+    }
+    
+    @Test
+    public void viiteGenerointiToimii() {      
+        when(viite.uusi()).thenReturn(6).thenReturn(16).thenReturn(26);  
+        when(varasto.saldo(1)).thenReturn(10);
+        when(varasto.saldo(2)).thenReturn(10); 
+        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
+        when(varasto.haeTuote(2)).thenReturn(new Tuote(2, "voi", 10));
+       
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(2);
+        k.tilimaksu("pekka", "66666");
+
+        //Testataan, että ensimmäinen ostos toimii
+        verify(pankki).tilisiirto(eq("pekka"), eq(6), eq("66666"), eq("33333-44455"), eq(15));   
+        
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(2);
+        k.tilimaksu("kalle", "12345");
+        
+        //Testataan, että toisessa ostoksessa ei ole edellisen ostoksen tietoja
+        verify(pankki).tilisiirto(eq("kalle"), eq(16), eq("12345"), eq("33333-44455"), eq(25));
+        
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(2);
+        k.tilimaksu("kalle", "12345");
+        
+        verify(pankki).tilisiirto(eq("kalle"), eq(26), eq("12345"), eq("33333-44455"), eq(25));
+
+    }
+    @Test 
+    public void poistaminenOnnistuuRK100prossaa() {      
+        when(viite.uusi()).thenReturn(6); 
+        when(varasto.saldo(1)).thenReturn(10);
+        when(varasto.saldo(2)).thenReturn(10); 
+        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
+        when(varasto.haeTuote(2)).thenReturn(new Tuote(2, "voi", 10));
+    
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(1);
+        k.poistaKorista(1);
+        k.poistaKorista(1);
+        k.tilimaksu("kalle", "12345");
+        
+        //Testataan, että toisessa ostoksessa ei ole edellisen ostoksen tietoja
+        verify(pankki).tilisiirto(eq("kalle"), eq(6), eq("12345"), eq("33333-44455"), eq(5));
+
+    }
+
 }
 
 
