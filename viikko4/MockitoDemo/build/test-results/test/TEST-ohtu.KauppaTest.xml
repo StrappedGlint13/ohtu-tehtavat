@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ohtu.KauppaTest" tests="6" skipped="0" failures="1" errors="0" timestamp="2020-11-15T12:56:14" hostname="lx9-fuxi153" time="0.302">
+<testsuite name="ohtu.KauppaTest" tests="6" skipped="0" failures="1" errors="0" timestamp="2020-11-16T08:08:16" hostname="lx9-fuxi153" time="0.299">
   <properties/>
   <testcase name="kutsutaanPankkiaOikeallaTilinumerollaJaSummalla" classname="ohtu.KauppaTest" time="0.281"/>
-  <testcase name="pyydetaanUusiViiteJokaiseenMaksuun" classname="ohtu.KauppaTest" time="0.002"/>
-  <testcase name="kutsutaanPankkiaOikeallaTilinumerolla" classname="ohtu.KauppaTest" time="0.01">
+  <testcase name="pyydetaanUusiViiteJokaiseenMaksuun" classname="ohtu.KauppaTest" time="0.001"/>
+  <testcase name="kutsutaanPankkiaOikeallaTilinumerolla" classname="ohtu.KauppaTest" time="0.007">
     <failure message="Argument(s) are different! Wanted:&#10;pankki.maksa(&quot;1111&quot;, 10, 54);&#10;-&gt; at ohtu.KauppaTest.kutsutaanPankkiaOikeallaTilinumerolla(KauppaTest.java:43)&#10;Actual invocations have different arguments:&#10;pankki.maksa(&quot;1111&quot;, 10, 0);&#10;-&gt; at ohtu.Kauppa.maksa(Kauppa.java:25)&#10;" type="org.mockito.exceptions.verification.junit.ArgumentsAreDifferent">Argument(s) are different! Wanted:
 pankki.maksa(&quot;1111&quot;, 10, 54);
 -&gt; at ohtu.KauppaTest.kutsutaanPankkiaOikeallaTilinumerolla(KauppaTest.java:43)
@@ -62,7 +62,7 @@ pankki.maksa(&quot;1111&quot;, 10, 0);
 </failure>
   </testcase>
   <testcase name="kaytetaanMaksussaPalautettuaViiteta" classname="ohtu.KauppaTest" time="0.004"/>
-  <testcase name="kaytetaanPerakkaistenViitekutsujenArvoja" classname="ohtu.KauppaTest" time="0.002"/>
+  <testcase name="kaytetaanPerakkaistenViitekutsujenArvoja" classname="ohtu.KauppaTest" time="0.003"/>
   <testcase name="kutsutaanPankkia" classname="ohtu.KauppaTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
