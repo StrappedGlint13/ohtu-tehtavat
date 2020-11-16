@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'jacoco'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.google.guava:guava:28.1-jre'
+    testCompile 'junit:junit:4.12'
+}
+
+application {
+    mainClass = 'ohtu.intjoukkosovellus.Sovellus'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+run {
+    standardInput = System.in
+}
