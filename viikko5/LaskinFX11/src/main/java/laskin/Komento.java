@@ -30,11 +30,18 @@ public abstract class Komento {
 
     public abstract void suorita();
 
-    void peru() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void peru() {
+         int laskunTulos = sovellus.edellinenTulos();
+         syotekentta.setText("");
+         tuloskentta.setText("" + laskunTulos);   
+        
+        if (laskunTulos==0) {
+            nollaa.disableProperty().set(true);
+            undo.disableProperty().set(true);
+        } else {
+            nollaa.disableProperty().set(false);
+            undo.disableProperty().set(false);
+        }
     }
-    
-    
-
     
 }
