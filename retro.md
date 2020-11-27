@@ -1,6 +1,6 @@
 ## Retrospektiivi
 
-Pidimme retrospektiivin tiimimme _Sankarikoodaajat_ kanssa ensimmäisen sprintin päätteeksi. Järjestimme _Zoom_ -palaverin, jossa keskustelimme, ja käytimme  _Flinga_ -sovellusta muistiinpanojen keräämiseen. Käytimme retrospektiivimenetelmistä tuttua Glad, Sad & Mad -tekniikkaa, jonka implementoimme Flingaan, jakamalla lappukategoriat väreittäin. 
+Pidimme retrospektiivin tiimimme _Sankarikoodaajat_ kanssa ensimmäisen sprintin päätteeksi. Järjestimme _Zoom_ -palaverin, jossa keskustelimme, ja käytimme  _Flinga_ -sovellusta muistiinpanojen keräämiseen. Käytimme retrospektiivimenetelmistä tuttua _Glad, Sad & Mad_ -tekniikkaa, jonka implementoimme Flingaan, jakamalla lappukategoriat väreittäin. 
 
 Aloitimme retrospektiivin 10-15 minuutin mittaisella tuokiolla, jossa kaikki lisäilivät Flingaan Glad, Sad ja Mad -lappuja. Kun alustalla alkoi olla hiljaista, tarkistimme olivatko kaikki valmiita. Tämän jälkeen analysoimme jokaisen lapun yksi kerrallaan, aloittaen Mad- ja Sad -lapuista. Näin mahdollistimme sen, että lopuksi käsitellään positiivisia asioita, ja kaikille jäi ymmärtääkseni hyvä maku suuhun.
 
