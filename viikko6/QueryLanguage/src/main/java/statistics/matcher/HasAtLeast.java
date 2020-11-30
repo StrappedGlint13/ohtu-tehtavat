@@ -1,11 +1,9 @@
-
 package statistics.matcher;
 
 import java.lang.reflect.Method;
 import statistics.Player;
 
 public class HasAtLeast implements Matcher {
-    
     private int value;
     private String fieldName;
 

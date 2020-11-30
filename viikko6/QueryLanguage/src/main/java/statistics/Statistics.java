@@ -54,6 +54,7 @@ public class Statistics {
         
         for (Player player : players) {
             if (matcher.matches(player)) {
+                System.out.println(matcher);
                 matches.add(player);
             }            
         }
